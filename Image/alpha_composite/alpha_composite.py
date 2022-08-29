@@ -6,18 +6,14 @@ import timeit
 impl = sys.implementation.name
 api = sys.argv[1]
 
-jpg1 = Image.open("../../testImages/python.jpeg")
-jpg1 = jpg1.resize((400,400))
-jpg1.putalpha(1)
-jpg2 = Image.open("../../testImages/boomslang.jpeg")
-jpg2 = jpg2.resize((400,400))
-jpg2.putalpha(1)
+im1 = Image.new('RGBA',(400,400))
+im2 = Image.new('RGBA',(400,400))
 outfile = open("output/" + impl + "_" + api, "w")
 
 for i in range(100):
     start_time = timeit.default_timer()
     for i in range(100):
-        im = Image.alpha_composite(jpg1, jpg2)
+        im = Image.alpha_composite(im1, im2)
     outfile.write(str(timeit.default_timer() - start_time)+"\n")
 
 outfile.close()

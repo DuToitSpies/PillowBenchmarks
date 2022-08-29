@@ -6,7 +6,7 @@ import timeit
 impl = sys.implementation.name
 api = sys.argv[1]
 
-im1 = Image.open("../../testImages/python.jpeg")
+im1 = Image.new('L',(100,100))
 outfile = open("output/" + impl + "_" + api, "w")
 
 for i in range(100):

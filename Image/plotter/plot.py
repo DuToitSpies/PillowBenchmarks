@@ -21,8 +21,8 @@ datapath = "../"+benchmark+"/output/"
 outfiles = os.listdir(datapath)
 
 for output in outfiles:
-    labels.append(output)
     if comparison in output:
+        labels.append(output)
         datafiles.append(output)
         data.append([])
         binvals.append(np.zeros(num_bins))
@@ -37,12 +37,12 @@ for i in range(len(datafiles)):
 for i in range(num_bins):
     bins.append(round(min_bin+i/num_bins*(max_bin-min_bin), 5))
 
-plt.hist(data[0], bins, color='red', label=labels[0])
-plt.hist(data[1], bins, color='blue', label=labels[1])
+plt.hist(data[0], bins, color='red', label=labels[0], alpha=0.5)
+plt.hist(data[1], bins, color='blue', label=labels[1], alpha=0.5)
 if comparison in ["hpy", "capi"]:
-    plt.hist(data[2], bins, color='green', label=labels[2])
+    plt.hist(data[2], bins, color='green', label=labels[2], alpha=0.5)
 plt.xlabel("Time [s]")
 plt.ylabel("Frequency")
-plt.title("Histogram of benchmark performance of the Pillow " + benchmark + " method written in HPy and the C-API  on CPython")
+plt.title("Histogram of benchmark performance of the Pillow " + benchmark + " method written in HPy and the C-API  on " + comparison)
 plt.legend()
 plt.show()
